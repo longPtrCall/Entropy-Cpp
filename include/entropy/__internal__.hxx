@@ -31,9 +31,9 @@
 
 // External symbol import.
 #if defined(_MSC_VER)
-#define __entropy_library_import __declspec(dllimport)
+#define __entropy_library_import extern "C" __declspec(dllimport)
 #else
-#define __entropy_library_import
+#define __entropy_library_import extern "C"
 #endif
 
 /*
