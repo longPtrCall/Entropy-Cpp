@@ -45,7 +45,11 @@ namespace entropy {
      */
     inline std::vector<uint8_t> Encode(const std::vector<uint8_t>& _data) {
 
-        return __entropy_Encode(_data);
+        __entropy_Encode(&_data[0], _data.size());
+        uint8_t* pointer = __entropy_GetLastOutput();
+        std::vector<uint8_t> output(pointer, pointer + __entropy_GetLastOutputSize());
+        __entropy_Finalize();
+        return output;
     }
 
 
@@ -56,7 +60,11 @@ namespace entropy {
      */
     inline std::vector<uint8_t> Decode(const std::vector<uint8_t>& _data) {
 
-        return __entropy_Decode(_data);
+        __entropy_Decode(&_data[0], _data.size());
+        uint8_t* pointer = __entropy_GetLastOutput();
+        std::vector<uint8_t> output(pointer, pointer + __entropy_GetLastOutputSize());
+        __entropy_Finalize();
+        return output;
     }
 
 

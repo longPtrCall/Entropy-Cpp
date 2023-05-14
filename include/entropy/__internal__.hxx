@@ -39,18 +39,37 @@
 /*
  * @Function - encode data.
  * @Param _data - data to encode.
- * @Returns original data encoded with NO ENCRYPTION.
+ * @Param _size - size of data.
  */
-__entropy_library_import std::vector<uint8_t> __entropy_Encode(const std::vector<uint8_t>& _data);
+__entropy_library_import void __entropy_Encode(const uint8_t* _data, const uint32_t _size);
 
 
 /*
  * @Function - decode data (with no passwords).
  * @Param _data - encoded data to decode.
  * @Param _size - data size.
- * @Returns a new array with decoded data.
  */
-__entropy_library_import std::vector<uint8_t> __entropy_Decode(const std::vector<uint8_t>& _data);
+__entropy_library_import uint8_t* __entropy_Decode(const uint8_t* _data, const uint32_t _size);
+
+
+/*
+ * @Function - get output pointer.
+ * @Returns pointer to output array.
+ */
+__entropy_library_import uint8_t* __entropy_GetLastOutput(void);
+
+
+/*
+ * @Function - get output size.
+ * @Returns size of last output.
+ */
+__entropy_library_import uint32_t __entropy_GetLastOutputSize(void);
+
+
+/*
+ * @Function - delete output.
+ */
+__entropy_library_import void __entropy_Finalize(void);
 
 
 /*
